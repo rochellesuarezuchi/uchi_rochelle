@@ -8,7 +8,32 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
     <div class="container mx-auto p-4 sm:p-6 lg:p-8">
-        
+
+        <form action="<?=site_url('users');?>" method="get" class="flex items-center space-x-3">
+                <?php
+                $q = '';
+                if(isset($_GET['q'])) {
+                    $q = $_GET['q'];
+                }
+                ?>
+                <input 
+                    type="text" 
+                    name="q" 
+                    placeholder="Search users..." 
+                    value="<?=html_escape($q);?>"
+                    class="w-64 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                >
+                <button 
+                    type="submit" 
+                    class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow transition duration-300 flex items-center space-x-2"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/>
+                    </svg>
+                    <span>Search</span>
+                </button>
+            </form>
+
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-2xl lg:text-3xl font-bold text-gray-900">User Records</h1>
             <a href="<?=site_url('users/create'); ?>" class="flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
@@ -55,6 +80,11 @@
                         <?php endif; ?>
                     </tbody>
                 </table>
+
+                <div class="flex justify-center items-center py-6 space-x-2">
+            <?= $page; ?>
+            </div>
+            
             </div>
         </div>
         

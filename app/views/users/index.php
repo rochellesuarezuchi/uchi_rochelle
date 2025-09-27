@@ -55,6 +55,13 @@
     transition: transform 0.2s ease;
   }
   .welcome-box:hover { transform: scale(1.05); }
+
+  
+.pagination a {
+    min-width: 2.5rem; 
+    text-align: center;
+}
+
 </style>
 </head>
 <body class="flex justify-center p-4 min-h-screen">

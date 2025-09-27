@@ -146,9 +146,11 @@
         </tbody>
       </table>
 
-      <!-- Pagination -->
-      <div class="flex justify-center items-center py-6 space-x-2 flex-wrap">
-        <?= $page; ?>
+     <!-- Pagination -->
+      <div class="flex flex-wrap justify-center items-center py-6 gap-2">
+          <?= $page; ?>
+      </div>
+
       </div>
     </div>
   </div>

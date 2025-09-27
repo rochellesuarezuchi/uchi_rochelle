@@ -43,9 +43,20 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
+// Registration is the default page
+$router->match('/', 'UserController::register', ['GET','POST']);
 
-$router->get('/', 'UserController::index');
+// Auth routes
+$router->match('/auth/register', 'UserController::register', ['GET','POST']);
+$router->match('/auth/login', 'UserController::login', ['GET','POST']);
+$router->get('/auth/logout', 'UserController::logout');
+
+// Homepage (after login)
 $router->get('/users', 'UserController::index');
-$router->match('/users/create', 'UserController::create', ['GET','POST']);
-$router->match('/users/update/{id}','UserController::update', ['GET','POST']);
-$router->get('/users/delete/{id}','UserController::delete');
+$router->get('/users/dashboard', 'UserController::dashboard');
+$router->get('/users/user-page', 'UserController::user_page');
+
+// Users CRUD
+$router->match('/users/create', 'UserController::create', ['GET', 'POST']);
+$router->match('/users/update/{id}', 'UserController::update', ['GET', 'POST']);
+$router->get('/users/delete/{id}', 'UserController::delete');

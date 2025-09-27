@@ -58,14 +58,13 @@ class UserController extends Controller {
         ]);
         $this->pagination->set_theme('custom');
         $this->pagination->set_custom_classes([
+            'nav'    => 'flex justify-center mt-6 flex-wrap',
+            'ul'     => 'flex flex-wrap justify-center gap-2',
+            'li'     => 'list-none',
+            'a'      => 'px-3 py-1 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-blue-500 hover:text-white transition',
+            'active' => 'bg-blue-600 text-white font-bold border-blue-600'
+        ]);
 
-        'nav'    => 'flex justify-center mt-6',
-         'ul'     => 'flex space-x-2',
-         'li'     => 'list-none',
-         'a'      => 'px-3 py-1 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-blue-500 hover:text-white transition',
-        'active' => 'bg-blue-600 text-white font-bold border-blue-600'
-
-        ] );
 
 
         $this->pagination->initialize($total_rows, $records_per_page, $page, 'users?q='.$q);

@@ -1,194 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create User</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: linear-gradient(135deg, #60a5fa, #6366f1);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create User</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* Body */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #013220, #014421);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
 
-    .card {
-  background: rgba(255, 255, 255, 0.9);
+/* Form card */
+.form-container {
+  background: #355E3B;
+  padding: 2.5rem;
   border-radius: 1rem;
-  box-shadow: 
-    0 4px 15px rgba(0, 0, 0, 0.5),   /* black shadow for depth */
-    0 0 8px rgba(59, 130, 246, 0.5); /* blue glow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: borderGlow 3s infinite ease-in-out;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 
-    0 6px 20px rgba(0, 0, 0, 0.6),   /* stronger black shadow */
-    0 0 15px rgba(59, 130, 246, 0.8),
-    0 0 25px rgba(99, 102, 241, 0.6);
+.form-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.7);
 }
 
-/* Flickering glow on the card border */
-@keyframes borderGlow {
-  0%   { box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 8px rgba(59,130,246,0.4); }
-  25%  { box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 14px rgba(59,130,246,0.7); }
-  50%  { box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 10px rgba(99,102,241,0.5); }
-  75%  { box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 16px rgba(59,130,246,0.8); }
-  100% { box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 8px rgba(59,130,246,0.4); }
+/* Title */
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #BCB88A;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
+/* Error */
+.error {
+  background: #8A9A5B;
+  color: #013220;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #BCB88A;
+  text-align: left;
+}
 
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
 
-    .form-label {
-      font-weight: 600;
-      color: #374151;
-      margin-bottom: 0.4rem;
-      display: inline-block;
-    }
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
 
-    input, select {
-      transition: all 0.3s ease;
-    }
+.form-group label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #BCB88A;
+  margin-bottom: 0.4rem;
+}
 
-    input:focus, select:focus {
-      border-color: #3b82f6 !important;
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
-    }
+/* Input wrappers */
+.input-wrapper,
+.password-wrapper,
+.select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
-    .btn {
-      transition: all 0.3s ease;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      position: relative;
-      overflow: hidden;
-    }
+input,
+select {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #8A9A5B;
+  font-size: 1rem;
+  outline: none;
+  background: #E6ECD7;
+  color: #013220;
+  transition: border 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
 
-    .btn::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.4), transparent 70%);
-      transform: scale(0);
-      transition: transform 0.5s ease;
-    }
+input::placeholder {
+  color: #355E3B;
+  font-style: italic;
+}
 
-    .btn:hover::before {
-      transform: scale(1);
-    }
+input:focus,
+select:focus {
+  border-color: #BCB88A;
+  box-shadow: 0 0 0 3px rgba(188,184,138,0.25);
+}
 
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
-    }
+/* Toggle password */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  color: #355E3B;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
 
-    .icon-toggle {
-      top: 50%;
-      transform: translateY(-50%);
-      right: 0.75rem;
-      color: #6b7280;
-      transition: color 0.3s ease;
-    }
+.toggle-password:hover {
+  color: #BCB88A;
+}
 
-    .icon-toggle:hover {
-      color: #2563eb;
-      text-shadow: 0 0 6px rgba(37, 99, 235, 0.7);
-    }
+/* Buttons */
+button {
+  background: #014421;
+  color: #BCB88A;
+  border: none;
+  padding: 0.85rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
 
-    @media (max-width: 480px) {
-      .card {
-        padding: 1.5rem !important;
-      }
-      h2 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+button:hover {
+  background: #013220;
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+}
+
+/* Cancel link */
+.cancel-btn {
+  display: inline-block;
+  background: #8A9A5B;
+  color: #013220;
+  text-decoration: none;
+  padding: 0.85rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.cancel-btn:hover {
+  background: #BCB88A;
+  color: #013220;
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+}
+</style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
+<body>
+<div class="form-container">
+  <h2>Create User</h2>
 
-  <div class="card w-full max-w-md p-8">
-    <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Create User</h2>
+  <?php if(isset($error)): ?>
+    <div class="error">
+      <?= html_escape($error); ?>
+    </div>
+  <?php endif; ?>
 
-    <?php if(isset($error)): ?>
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm">
-        <?= html_escape($error); ?>
+  <form method="POST" action="<?= site_url('users/create'); ?>">
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <div class="input-wrapper">
+        <input type="text" name="username" id="username" placeholder="Enter username" required>
       </div>
-    <?php endif; ?>
+    </div>
 
-    <form method="POST" action="<?= site_url('users/create'); ?>">
-      <!-- Username -->
-      <div class="mb-5">
-        <label for="username" class="form-label">Username</label>
-        <input 
-          type="text" id="username" name="username" required
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-          placeholder="Enter username"
-        />
+    <div class="form-group">
+      <label for="email">Email</label>
+      <div class="input-wrapper">
+        <input type="email" name="email" id="email" placeholder="Enter email" required>
       </div>
+    </div>
 
-      <!-- Email -->
-      <div class="mb-5">
-        <label for="email" class="form-label">Email</label>
-        <input 
-          type="email" id="email" name="email" required
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-          placeholder="Enter email"
-        />
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="password-wrapper">
+        <input type="password" name="password" id="password" placeholder="Enter password" required>
+        <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
       </div>
+    </div>
 
-      <!-- Password -->
-      <div class="mb-5">
-        <label for="password" class="form-label">Password</label>
-        <div class="relative">
-          <input 
-            type="password" id="password" name="password" required
-            class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-md focus:outline-none"
-            placeholder="Enter password"
-          />
-          <i class="fa-solid fa-eye icon-toggle absolute cursor-pointer" id="togglePassword"></i>
-        </div>
-      </div>
-
-      <!-- Role -->
-      <div class="mb-6">
-        <label for="role" class="form-label">Role</label>
-        <select 
-          name="role" id="role" required
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-        >
+    <div class="form-group">
+      <label for="role">Role</label>
+      <div class="select-wrapper">
+        <select name="role" id="role" required>
           <option value="user" selected>User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
+    </div>
 
-      <!-- Buttons -->
-      <div class="flex gap-4">
-        <button type="submit" class="btn flex-1 bg-blue-600 text-white py-2 hover:bg-blue-700">
-          Create User
-        </button>
-        <a href="<?= site_url('users'); ?>" class="btn flex-1 bg-gray-500 text-white py-2 text-center hover:bg-gray-600">
-          Cancel
-        </a>
-      </div>
-    </form>
-  </div>
+    <button type="submit">Create User</button>
+    <a href="<?= site_url('users'); ?>" class="cancel-btn">Cancel</a>
+  </form>
+</div>
 
-  <script>
-    const togglePassword = document.querySelector('#togglePassword');
-    const password = document.querySelector('#password');
+<script>
+const togglePassword = document.querySelector('#togglePassword');
+const password = document.querySelector('#password');
 
-    togglePassword.addEventListener('click', function () {
-      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-      password.setAttribute('type', type);
+togglePassword.addEventListener('click', function () {
+  const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+  password.setAttribute('type', type);
 
-      this.classList.toggle('fa-eye');
-      this.classList.toggle('fa-eye-slash');
-    });
-  </script>
+  this.classList.toggle('fa-eye');
+  this.classList.toggle('fa-eye-slash');
+});
+</script>
 </body>
 </html>

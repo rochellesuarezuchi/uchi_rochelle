@@ -1,155 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Update User</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: linear-gradient(135deg, #60a5fa, #6366f1);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Update User</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body {
+    background: linear-gradient(135deg, #013220, #014421);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 1rem;
-      box-shadow: 
-        0 4px 15px rgba(0, 0, 0, 0.5),
-        0 0 8px rgba(59, 130, 246, 0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: borderGlow 3s infinite ease-in-out;
-    }
+  .card {
+    background: #355E3B;
+    border-radius: 1rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    padding: 2.5rem;
+    max-width: 450px;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.7);
+  }
 
-    .card:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 
-        0 6px 20px rgba(0, 0, 0, 0.6),
-        0 0 15px rgba(59, 130, 246, 0.8),
-        0 0 25px rgba(99, 102, 241, 0.6);
-    }
+  h2 {
+    color: #BCB88A;
+    text-align: center;
+  }
 
-    @keyframes borderGlow {
-      0%   { box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 8px rgba(59,130,246,0.4); }
-      25%  { box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 14px rgba(59,130,246,0.7); }
-      50%  { box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 10px rgba(99,102,241,0.5); }
-      75%  { box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 16px rgba(59,130,246,0.8); }
-      100% { box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 8px rgba(59,130,246,0.4); }
-    }
+  .form-label {
+    font-weight: 600;
+    color: #E6ECD7;
+    margin-bottom: 0.4rem;
+    display: inline-block;
+  }
 
-    .form-label {
-      font-weight: 600;
-      color: #374151;
-      margin-bottom: 0.4rem;
-      display: inline-block;
-    }
+  /* Themed textboxes for dark card */
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem; /* slightly smaller radius for cleaner look */
+  border: 1px solid #BCB88A;
+  background: #E6ECD7; /* light background for contrast */
+  color: #013220; /* dark text for readability */
+  font-size: 1rem;
+  font-weight: 500;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
 
-    input, select {
-      transition: all 0.3s ease;
-    }
+input::placeholder {
+  color: #8A9A5B; /* slightly darker placeholder */
+  font-style: italic;
+}
 
-    input:focus, select:focus {
-      border-color: #3b82f6 !important;
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
-    }
+input:focus {
+  border-color: #BCB88A;
+  box-shadow: 0 0 0 3px rgba(188,184,138,0.3);
+  background: #F2F6E9; /* slightly lighter on focus */
+}
 
-    .btn {
-      transition: all 0.3s ease;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      position: relative;
-      overflow: hidden;
-    }
 
-    .btn::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.4), transparent 70%);
-      transform: scale(0);
-      transition: transform 0.5s ease;
-    }
+  /* Buttons */
+  .btn {
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    padding: 0.65rem 1.25rem;
+    text-align: center;
+  }
+  .btn-primary {
+    background: #014421;
+    color: #BCB88A;
+  }
+  .btn-primary:hover {
+    background: #013220;
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(188,184,138,0.4);
+  }
+  .btn-secondary {
+    background: #8A9A5B;
+    color: #013220;
+  }
+  .btn-secondary:hover {
+    background: #BCB88A;
+    transform: scale(1.05);
+  }
 
-    .btn:hover::before {
-      transform: scale(1);
-    }
+  /* Error box */
+  .error-box {
+    background: #fee2e2;
+    border: 1px solid #fca5a5;
+    color: #b91c1c;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
 
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
-    }
-
-    @media (max-width: 480px) {
-      .card {
-        padding: 1.5rem !important;
-      }
-      h2 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+  @media (max-width: 480px) {
+    .card { padding: 1.5rem !important; }
+    h2 { font-size: 1.5rem; }
+  }
+</style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
-  <div class="card w-full max-w-md p-8">
-    <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Update User</h2>
+<div class="card">
+  <h2 class="text-3xl font-bold mb-6">Update User</h2>
 
-    <?php if(isset($error)): ?>
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm">
-        <?= html_escape($error); ?>
-      </div>
-    <?php endif; ?>
+  <?php if(isset($error)): ?>
+    <div class="error-box">
+      <?= html_escape($error); ?>
+    </div>
+  <?php endif; ?>
 
-    <form action="<?=site_url('users/update/'.segment(4));?>" method="POST">
-      <!-- Username -->
-      <div class="mb-5">
-        <label for="username" class="form-label">Username</label>
-        <input 
-          type="text" id="username" name="username"
-          value="<?= html_escape($user['username']);?>" required
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-          placeholder="Enter username"
-        />
-      </div>
+  <form action="<?=site_url('users/update/'.segment(4));?>" method="POST" class="space-y-5">
+    <!-- Username -->
+    <div>
+      <label for="username" class="form-label">Username</label>
+      <input 
+        type="text" id="username" name="username"
+        value="<?= html_escape($user['username']);?>" required
+        placeholder="Enter username"
+      />
+    </div>
 
-      <!-- Email -->
-      <div class="mb-5">
-        <label for="email" class="form-label">Email</label>
-        <input 
-          type="email" id="email" name="email"
-          value="<?= html_escape($user['email']);?>" required
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-          placeholder="Enter email"
-        />
-      </div>
+    <!-- Email -->
+    <div>
+      <label for="email" class="form-label">Email</label>
+      <input 
+        type="email" id="email" name="email"
+        value="<?= html_escape($user['email']);?>" required
+        placeholder="Enter email"
+      />
+    </div>
 
-      <!-- Role -->
-      <div class="mb-6">
-        <label for="role" class="form-label">Role</label>
-        <select 
-          name="role" id="role" required
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"
-        >
-          <option value="user" <?= $user['role'] === 'user' ? 'selected' : ''; ?>>User</option>
-          <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : ''; ?>>Admin</option>
-        </select>
-      </div>
+    <!-- Role (unchanged style) -->
+    <div>
+      <label for="role" class="form-label">Role</label>
+      <select name="role" id="role" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none">
+        <option value="user" <?= $user['role'] === 'user' ? 'selected' : ''; ?>>User</option>
+        <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : ''; ?>>Admin</option>
+      </select>
+    </div>
 
-      <!-- Buttons -->
-      <div class="flex gap-4">
-        <button type="submit" class="btn flex-1 bg-blue-600 text-white py-2 hover:bg-blue-700">
-          Update User
-        </button>
-        <a href="<?= site_url('users'); ?>" class="btn flex-1 bg-gray-500 text-white py-2 text-center hover:bg-gray-600">
-          Cancel
-        </a>
-      </div>
-    </form>
-  </div>
+    <!-- Buttons -->
+    <div class="flex gap-4">
+      <button type="submit" class="btn btn-primary flex-1">Update User</button>
+      <a href="<?= site_url('users'); ?>" class="btn btn-secondary flex-1">Cancel</a>
+    </div>
+  </form>
+</div>
 
 </body>
 </html>

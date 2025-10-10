@@ -9,9 +9,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+    /* Body */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #60a5fa, #6366f1);
+      background: linear-gradient(135deg, #013220, #014421);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -19,118 +20,118 @@
       margin: 0;
     }
 
-    /* Card Container */
+    /* Login card */
     .login-card {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 2rem;
+      background: #355E3B;
+      padding: 2.5rem;
       border-radius: 1rem;
       width: 100%;
-      max-width: 380px;
-      box-shadow:
-        0 6px 20px rgba(0, 0, 0, 0.6),
-        0 0 12px rgba(59, 130, 246, 0.6);
-      animation: borderGlow 3s infinite ease-in-out;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      max-width: 400px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
       text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .login-card:hover {
-      transform: translateY(-4px) scale(1.01);
-      box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.7),
-        0 0 20px rgba(59, 130, 246, 0.8),
-        0 0 30px rgba(99, 102, 241, 0.6);
-    }
-
-    @keyframes borderGlow {
-      0%   { box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 10px rgba(59,130,246,0.5); }
-      50%  { box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 20px rgba(99,102,241,0.7); }
-      100% { box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 10px rgba(59,130,246,0.5); }
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.7);
     }
 
     /* Title */
     .login-title {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin-bottom: 1.5rem;
-      color: #1f2937;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #BCB88A;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
 
     /* Error message */
     .error-message {
-      background: #fee2e2;
-      color: #b91c1c;
-      padding: 0.6rem;
+      background: #8A9A5B;
+      color: #013220;
+      padding: 0.7rem;
       border-radius: 0.5rem;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #BCB88A;
     }
 
     /* Form */
     .login-form {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
     .form-group {
+      display: flex;
+      flex-direction: column;
       text-align: left;
     }
 
     .form-group label {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #374151;
-      margin-bottom: 0.3rem;
-      display: block;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 0.6rem 0.75rem;
-      border: 1px solid #d1d5db;
-      border-radius: 0.5rem;
       font-size: 1rem;
-      outline: none;
-      transition: border 0.3s, box-shadow 0.3s;
+      font-weight: 600;
+      color: #BCB88A;
+      margin-bottom: 0.4rem;
     }
 
-    .form-group input:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-    }
-
-    /* Password wrapper (fix overflow) */
+    /* Input wrappers */
+    .input-wrapper,
     .password-wrapper {
       position: relative;
       display: flex;
       align-items: center;
+      width: 100%;
     }
 
+    .input-wrapper input,
     .password-wrapper input {
-      padding-right: 2.5rem;
+      width: 100%;
+      padding: 0.65rem 0.8rem;
+      border-radius: 0.5rem;
+      border: 1px solid #8A9A5B;
+      font-size: 1rem;
+      outline: none;
+      background: #E6ECD7;
+      color: #013220;
+      transition: border 0.3s, box-shadow 0.3s;
       box-sizing: border-box;
     }
 
+    .input-wrapper input::placeholder,
+    .password-wrapper input::placeholder {
+      color: #355E3B;
+      font-style: italic;
+    }
+
+    .input-wrapper input:focus,
+    .password-wrapper input:focus {
+      border-color: #BCB88A;
+      box-shadow: 0 0 0 3px rgba(188,184,138,0.25);
+    }
+
+    /* Toggle password */
     .toggle-password {
       position: absolute;
       right: 12px;
-      color: #6b7280;
+      color: #355E3B;
       cursor: pointer;
       font-size: 1rem;
       transition: color 0.3s;
     }
 
     .toggle-password:hover {
-      color: #111827;
+      color: #BCB88A;
     }
 
     /* Button */
     .btn-login {
-      background: #2563eb;
-      color: #fff;
+      background: #014421;
+      color: #BCB88A;
       border: none;
-      padding: 0.8rem;
+      padding: 0.85rem;
       border-radius: 0.5rem;
       font-size: 1rem;
       font-weight: 600;
@@ -139,26 +140,27 @@
     }
 
     .btn-login:hover {
-      background: #1d4ed8;
+      background: #013220;
       transform: scale(1.03);
-      box-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
     }
 
     /* Register link */
     .register-text {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #374151;
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+      color: #BCB88A;
     }
 
     .register-text a {
-      color: #2563eb;
+      color: #8A9A5B;
       font-weight: 600;
       text-decoration: none;
     }
 
     .register-text a:hover {
       text-decoration: underline;
+      color: #BCB88A;
     }
   </style>
 </head>
@@ -173,13 +175,17 @@
     <?php endif; ?>
 
     <form method="post" action="<?= site_url('auth/login') ?>" class="login-form">
+      <!-- Username -->
       <div class="form-group">
-        <label>Username</label>
-        <input type="text" name="username" placeholder="Enter your username" required>
+        <label for="username">Username</label>
+        <div class="input-wrapper">
+          <input type="text" name="username" id="username" placeholder="Enter your username" required>
+        </div>
       </div>
 
+      <!-- Password -->
       <div class="form-group">
-        <label>Password</label>
+        <label for="password">Password</label>
         <div class="password-wrapper">
           <input type="password" name="password" id="password" placeholder="Enter your password" required>
           <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>

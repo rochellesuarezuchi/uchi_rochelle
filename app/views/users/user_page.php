@@ -6,100 +6,162 @@
 <title>User Page</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-/* Card with subtle outer glow */
-.glow-card {
-    background: #ffffff;
+/* Body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #013220, #014421);
+    min-height: 100vh;
+    margin: 0;
+    color: #E6ECD7;
+}
+
+/* Card */
+.card {
+    background: #355E3B;
     border-radius: 1rem;
-    padding: 1.5rem;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: pulseGlow 4s infinite;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.glow-card:hover {
-    transform: translateY(-5px) scale(1.02);
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.7);
 }
 
-@keyframes pulseGlow {
-    0%, 100% {
-        box-shadow:
-            0 6px 20px rgba(0, 0, 0, 0.15),
-            0 0 6px rgba(59, 130, 246, 0.2),
-            0 0 12px rgba(99, 102, 241, 0.2);
+/* Header */
+.header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #BCB88A;
+}
+
+.header p {
+    color: #E6ECD7;
+    margin-top: 0.3rem;
+}
+
+/* Buttons */
+.btn-logout {
+    background: #014421;
+    color: #BCB88A;
+    font-weight: 600;
+    padding: 0.65rem 1.2rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn-logout:hover {
+    background: #013220;
+    transform: scale(1.03);
+    box-shadow: 0 0 12px rgba(0,0,0,0.5);
+}
+
+/* Profile Avatar */
+.profile-avatar {
+    width: 50px;
+    height: 50px;
+    background: #014421;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #BCB88A;
+}
+
+/* Text */
+.card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #BCB88A;
+}
+
+.card p,
+.card span {
+    color: #E6ECD7;
+}
+
+/* Role badge */
+.role-badge {
+    display: inline-flex;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #014421;
+    color: #BCB88A;
+}
+
+/* Layout */
+.flex-gap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+@media(min-width: 768px) {
+    .flex-gap {
+        flex-direction: row;
     }
-    50% {
-        box-shadow:
-            0 6px 20px rgba(0, 0, 0, 0.15),
-            0 0 10px rgba(59, 130, 246, 0.3),
-            0 0 20px rgba(99, 102, 241, 0.3);
-    }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: #BCB88A;
 }
 </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body>
 <div class="container mx-auto px-4 py-8">
 
     <!-- Header -->
-    <div class="glow-card mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <div class="card flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 header">
         <div>
-            <h1 class="text-3xl font-bold text-gray-800">Welcome to User Page</h1>
-            <p class="text-gray-600 mt-2">Hello, <?= html_escape($logged_in_user['username']); ?>!</p>
+            <h1>Welcome, <?= html_escape($logged_in_user['username']); ?>!</h1>
+            <p>Your dashboard overview</p>
         </div>
-        <div class="flex space-x-4">
-            <a href="<?= site_url('auth/logout'); ?>" 
-               class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-full md:w-auto text-center">
-                Logout
-            </a>
+        <div>
+            <a href="<?= site_url('auth/logout'); ?>" class="btn-logout">Logout</a>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Profile Card -->
-        <div class="glow-card">
-            <div class="flex items-center mb-4">
-                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                    <?= strtoupper(substr($logged_in_user['username'], 0, 1)); ?>
-                </div>
-                <div class="ml-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Profile Information</h3>
-                    <p class="text-gray-600">Your account details</p>
-                </div>
-            </div>
-            <div class="space-y-2 text-sm md:text-base">
-                <div class="flex justify-between">
-                    <span class="text-gray-600">Username:</span>
-                    <span class="font-medium"><?= html_escape($logged_in_user['username']); ?></span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-600">Email:</span>
-                    <span class="font-medium"><?= html_escape($logged_in_user['email']); ?></span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-600">Role:</span>
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                        <?= ucfirst(html_escape($logged_in_user['role'])); ?>
-                    </span>
+    <!-- Combined Card: Profile + System Info -->
+    <div class="card flex flex-col md:flex-row gap-8 p-6">
+        <!-- Profile Section -->
+        <div class="flex flex-col md:w-1/2 gap-4">
+            <h3>Profile Information</h3>
+            <div class="flex items-center gap-4">
+                <div class="profile-avatar"><?= strtoupper(substr($logged_in_user['username'], 0, 1)); ?></div>
+                <div>
+                    <p><strong>Username:</strong> <?= html_escape($logged_in_user['username']); ?></p>
+                    <p><strong>Email:</strong> <?= html_escape($logged_in_user['email']); ?></p>
+                    <p><strong>Role:</strong> <span class="role-badge"><?= ucfirst(html_escape($logged_in_user['role'])); ?></span></p>
                 </div>
             </div>
         </div>
 
-        <!-- System Info Card -->
-        <div class="glow-card">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">System Information</h3>
-            <div class="space-y-2 text-sm md:text-base text-gray-600">
-                <p>Welcome to your user dashboard!</p>
-                <p>Here you can view your account details and role information.</p>
-                <p>Your role determines the features and access available to you.</p>
-                <p>If you encounter any issues or need assistance, please contact your administrator.</p>
-            </div>
+        <!-- System Info Section -->
+        <div class="flex flex-col md:w-1/2 gap-4">
+            <h3>System Information</h3>
+            <p>Welcome to your user dashboard!</p>
+            <p>Here you can view your account details and role information.</p>
+            <p>Your role determines the features and access available to you.</p>
+            <p>If you encounter any issues or need assistance, please contact your administrator.</p>
         </div>
     </div>
 
     <!-- Footer -->
-    <div class="mt-8 text-center text-gray-500 text-sm">
-        <p>&copy; <?= date('Y'); ?> User Management System. All rights reserved.</p>
-    </div>
+    <footer>
+        &copy; <?= date('Y'); ?> User Account. All rights reserved.
+    </footer>
+
 </div>
 </body>
 </html>

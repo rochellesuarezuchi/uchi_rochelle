@@ -6,43 +6,153 @@
 <title>User Management</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body {
-    background: linear-gradient(135deg, #60a5fa, #6366f1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+/* Body */
+body {
+  background: linear-gradient(135deg, #013220, #014421);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-  .card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 1rem;
-    box-shadow:
-      0 6px 20px rgba(0, 0, 0, 0.6),
-      0 0 14px rgba(59, 130, 246, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .card:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow:
-      0 8px 28px rgba(0, 0, 0, 0.7),
-      0 0 20px rgba(59, 130, 246, 0.6);
-  }
+/* Card container */
+.card {
+  background: #355E3B;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 2rem;
+}
+.card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.7);
+}
 
-  /* Buttons */
-  .btn-primary { background: #2563eb; color: #fff; font-weight: 600; padding: 0.55rem 1.25rem; border-radius: 0.5rem; transition: transform 0.2s ease, background 0.2s ease; }
-  .btn-primary:hover { background: #1d4ed8; transform: scale(1.05); }
-  .btn-danger { background: #dc2626; color: #fff; font-weight: 600; padding: 0.55rem 1.25rem; border-radius: 0.5rem; transition: transform 0.2s ease, background 0.2s ease; }
-  .btn-danger:hover { background: #b91c1c; transform: scale(1.05); }
-  .btn-edit { background: #2563eb; color: white; padding: 0.35rem 0.9rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
-  .btn-edit:hover { background: #1d4ed8; transform: scale(1.05); }
-  .btn-delete { background: #dc2626; color: white; padding: 0.35rem 0.9rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
-  .btn-delete:hover { background: #b91c1c; transform: scale(1.05); }
+/* Buttons */
+.btn-primary {
+  background: #014421;
+  color: #BCB88A;
+  font-weight: 600;
+  padding: 0.55rem 1.25rem;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.btn-primary:hover {
+  background: #013220;
+  transform: scale(1.05);
+}
+.btn-danger {
+  background: #8A9A5B;
+  color: #013220;
+  font-weight: 600;
+  padding: 0.55rem 1.25rem;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.btn-danger:hover {
+  background: #BCB88A;
+  transform: scale(1.05);
+}
 
-  table thead { background: #2563eb; }
-  table thead th { color: #ffffff; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
-  table tbody tr:hover { background: rgba(59, 130, 246, 0.15); }
+.btn-edit {
+  background: #014421;
+  color: #BCB88A;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.btn-edit:hover { background: #013220; transform: scale(1.05); }
 
-  .tag-admin { background: #fee2e2; color: #b91c1c; }
-  .tag-user { background: #dcfce7; color: #166534; }
+.btn-delete {
+  background: #8A9A5B;
+  color: #013220;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.btn-delete:hover { background: #BCB88A; transform: scale(1.05); }
 
+<<<<<<< HEAD
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table thead {
+  background: #014421;
+}
+table thead th {
+  color: #BCB88A;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+table tbody tr {
+  border-bottom: 1px solid rgba(188,184,138,0.3);
+}
+table tbody tr:hover {
+  background: rgba(188,184,138,0.15);
+}
+table tbody tr td {
+  color: #E6ECD7; /* Light color for readability */
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* Role Tags (pill/oblong) */
+.tag-admin, .tag-user {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px; /* pill shape */
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+}
+/* Welcome box */
+.welcome-box {
+  display: inline-block;
+  background: linear-gradient(to right, #355E3B, #014421);
+  color: #BCB88A;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+.welcome-box:hover { transform: scale(1.05); }
+
+/* Search input */
+.search-box input {
+  width: 100%;
+  max-width: 18rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #8A9A5B;
+  background: #E6ECD7;
+  color: #013220;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+.search-box input::placeholder {
+  color: #355E3B;
+  font-style: italic;
+}
+.search-box input:focus {
+  border-color: #BCB88A;
+  box-shadow: 0 0 0 3px rgba(188,184,138,0.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .search-box { max-width: 100%; }
+}
+=======
   .welcome-box {
     display: inline-block;
     background: linear-gradient(to right, #3b82f6, #6366f1);
@@ -62,21 +172,22 @@
     text-align: center;
 }
 
+>>>>>>> 33995cc561271d7c69569d71fbcfb96fab02b1fc
 </style>
 </head>
 <body class="flex justify-center p-4 min-h-screen">
 
-<div class="container card mx-auto p-4 md:p-6 lg:p-10 w-full">
+<div class="container card mx-auto w-full">
 
   <!-- Dashboard Header -->
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-    <h2 class="text-2xl font-bold text-gray-800">
+    <h2 class="text-2xl font-bold text-BCB88A">
       <?= ($logged_in_user['role'] === 'admin') ? 'Admin Dashboard' : 'User Dashboard'; ?>
     </h2>
     <a href="<?=site_url('auth/logout'); ?>" class="btn-danger w-full md:w-auto text-center">Logout</a>
   </div>
 
-  <!-- Highlighted Welcome -->
+  <!-- Welcome Box -->
   <?php if(!empty($logged_in_user)): ?>
     <div class="mb-6">
       <span class="welcome-box">
@@ -91,59 +202,50 @@
   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 flex-wrap">
     <form action="<?=site_url('users');?>" method="get" class="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
       <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
-      <input type="text" name="q" placeholder="Search users..." value="<?=html_escape($q);?>" 
-             class="w-full sm:w-64 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
-      <button type="submit" class="btn-primary flex items-center justify-center space-x-2 w-full sm:w-auto">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/>
-        </svg>
-        <span>Search</span>
-      </button>
+      <div class="search-box">
+        <input type="text" name="q" placeholder="Search users..." value="<?=html_escape($q);?>">
+      </div>
+      <button type="submit" class="btn-primary w-full sm:w-auto">Search</button>
     </form>
 
     <a href="<?=site_url('users/create'); ?>" class="btn-primary flex items-center justify-center shadow-md hover:scale-105 w-full sm:w-auto">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-      </svg>
       Add Account
     </a>
   </div>
 
   <!-- Table -->
-  <div class="bg-white/95 rounded-xl shadow-lg overflow-hidden">
+  <div class="rounded-xl overflow-hidden shadow-lg">
     <div class="overflow-x-auto">
       <table class="min-w-full">
-        <thead class="border-b border-gray-200">
+        <thead>
           <tr>
-            <th class="py-3 px-4 text-left">Username</th>
-            <th class="py-3 px-4 text-left">Email</th>
-            <th class="py-3 px-4 text-left">Role</th>
-            <th class="py-3 px-4 text-center">Actions</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th class="text-center">Actions</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200">
+        <tbody>
           <?php if (empty($users)): ?>
             <tr>
-              <td colspan="4" class="py-12 text-center text-gray-500">
-                <p class="text-lg font-semibold">No user records found.</p>
-                <p class="mt-2 text-sm">Click the "Add Account" button to add one!</p>
+              <td colspan="4" class="py-12 text-center font-semibold text-E6ECD7">
+                No user records found.
               </td>
             </tr>
           <?php else: ?>
             <?php foreach (html_escape($users) as $user): ?>
               <tr>
-                <td class="py-4 px-4 text-sm text-gray-900 font-medium whitespace-nowrap"><?=$user['username'];?></td>
-                <td class="py-4 px-4 text-sm text-gray-600 whitespace-nowrap"><?=$user['email'];?></td>
-                <td class="py-4 px-4 text-sm text-gray-600 whitespace-nowrap">
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <?= $user['role'] === 'admin' ? 'tag-admin' : 'tag-user'; ?>">
+                <td><?=$user['username'];?></td>
+                <td><?=$user['email'];?></td>
+                <td>
+                  <span class="<?= $user['role'] === 'admin' ? 'tag-admin' : 'tag-user'; ?>">
                     <?= ucfirst(html_escape($user['role'])); ?>
                   </span>
                 </td>
-                <td class="py-4 px-4 text-sm font-medium text-center whitespace-nowrap">
+                <td class="text-center">
                   <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
-                    <a href="<?=site_url('users/update/'.$user['id']); ?>" class="btn-edit w-full sm:w-auto text-center">Edit</a>
-                    <a href="<?=site_url('users/delete/'.$user['id']); ?>" 
-                       class="btn-delete w-full sm:w-auto text-center"
+                    <a href="<?=site_url('users/update/'.$user['id']); ?>" class="btn-edit">Edit</a>
+                    <a href="<?=site_url('users/delete/'.$user['id']); ?>" class="btn-delete"
                        onclick="return confirm('Are you sure you want to delete this user? This action cannot be undone.');">Delete</a>
                   </div>
                 </td>
@@ -153,14 +255,13 @@
         </tbody>
       </table>
 
-     <!-- Pagination -->
-      <div class="flex flex-wrap justify-center items-center py-6 gap-2">
-          <?= $page; ?>
-      </div>
-
+      <!-- Pagination -->
+      <div class="flex justify-center items-center py-6 space-x-2 flex-wrap">
+        <?= $page; ?>
       </div>
     </div>
   </div>
+
 </div>
 </body>
 </html>
